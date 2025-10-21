@@ -9,7 +9,7 @@ m1 = requests.request('DELETE', fw)
 
 print()
 print(m1)
-
+print()
 '''
 Server — server/banner (Apache, nginx, Cloudflare, etc.). Good for fingerprinting.
 X-Powered-By — framework or language (PHP, Express, etc.).
