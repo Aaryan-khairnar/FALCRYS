@@ -1,12 +1,14 @@
 import requests
+print(r.headers)
 
 w = input("Give website to get json errors: ")
 fw = "https://www."+ w
 r = requests.get(fw)
 
+m1 = requests.request('DELETE', fw)
 
-
-print(r.headers)
+print()
+print(m1)
 
 '''
 Server — server/banner (Apache, nginx, Cloudflare, etc.). Good for fingerprinting.
@@ -25,3 +27,5 @@ Retry-After — rate-limit hint.
 Expect-CT, X-XSS-Protection (deprecated but informative).
 Content-Length, Allow — methods allowed (if Allow present).
 '''
+
+
