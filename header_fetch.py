@@ -1,15 +1,26 @@
 import requests
-print(r.headers)
 
-w = input("Give website to get json errors: ")
-fw = "https://www."+ w
-r = requests.get(fw)
+def single_or_multiple_websites() -> str: 
+    choice = int(input("Single(0) or Multiple(1) websites? [0/1]:"))
+    if (choice == 0):
+        w = input("Give website to get json errors: ")
+    else:
+        pass
+    return w
+    
 
-m1 = requests.request('DELETE', fw)
+def fetch_head(w): 
+    response_header = requests.request('GET', w)
+    return response_header.headers
 
-print()
-print(m1)
-print()
+def main():
+    website = single_or_multiple_websites()
+    header = fetch_head(website)
+    print(header)
+
+if __name__ == '__main__':
+    main()
+
 '''
 Server — server/banner (Apache, nginx, Cloudflare, etc.). Good for fingerprinting.
 X-Powered-By — framework or language (PHP, Express, etc.).
