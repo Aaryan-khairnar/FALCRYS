@@ -3,16 +3,15 @@ import os
 # import json
 
 def single_or_multiple_websites(): 
-    choice = '0'
     choice = input("Single(0) or Multiple(1) websites? [0(default)/1]: ")
     print()
-    if choice == '0':
-        website = input("Give website to get headers: ")
-        print(fetch_head(website))
-    else:
+    if choice == '1':
         path = input("Give path of txt file of all urls: ")
         fetch_multiple_head(path)
-    
+    else:
+        website = input("Give website to get headers: ")
+        print(fetch_head(website))
+  
 
 def fetch_head(w): 
     response_header = requests.request('GET', w)
@@ -36,7 +35,6 @@ def fetch_multiple_head(w):
 
 def main():
     website = single_or_multiple_websites()
-    
 
 if __name__ == '__main__':
     main()
