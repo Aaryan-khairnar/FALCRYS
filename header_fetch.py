@@ -1,6 +1,6 @@
 import requests
-import os
-# import json
+# import os
+import json
 
 def single_or_multiple_websites(): 
     choice = input("Single(0) or Multiple(1) websites? [0(default)/1]: ")
@@ -10,12 +10,12 @@ def single_or_multiple_websites():
         fetch_multiple_head(path)
     else:
         website = input("Give website to get headers: ")
-        print(fetch_head(website))
+        print(json.dumps(fetch_head(website), indent=2))
   
 
 def fetch_head(w): 
     response_header = requests.request('GET', w)
-    return response_header.headers
+    return dict(response_header.headers)
 
 def fetch_multiple_head(w):
     output_dict = {}
@@ -26,15 +26,14 @@ def fetch_multiple_head(w):
                 for i, line in enumerate(url_file):
                     print(i,": ", line.strip())
                     output_dict[i]= fetch_head(line.strip())
-#                    output_file.write(f"{i}:{json.dumps(fetch_head(line.strip()), indent=2)}\n")
-                    output_file.write(f"{i}: {fetch_head(line.strip())}\n")
-
+                    #output_file.write(f"{i}: {fetch_head(line.strip())}\n")
+                    output_file.write(f"{line} : {json.dumps(output_dict[i], indent=2)}\n")
         return output_dict
     except Exception as e:
         print(f"Something is wrong: {e}")
 
 def main():
-    website = single_or_multiple_websites()
+    single_or_multiple_websites()
 
 if __name__ == '__main__':
     main()
