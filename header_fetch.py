@@ -1,6 +1,13 @@
 import requests
-# import os
+import sys
 import json
+import re 
+
+def validateinput(website):
+    if not website.startswith(('http://', 'https://')):
+        website = 'https://' + website
+        print(website)
+    return website
 
 def single_or_multiple_websites(): 
     choice = input("Single(0) or Multiple(1) websites? [0(default)/1]: ")
@@ -9,13 +16,16 @@ def single_or_multiple_websites():
         path = input("Give path of txt file of all urls: ")
         fetch_multiple_head(path)
     else:
-        website = input("Give website to get headers: ")
+        website = validateinput(input("Give website to get headers: "))
         print(json.dumps(fetch_head(website), indent=2))
   
 
-def fetch_head(w): 
-    response_header = requests.request('GET', w)
-    return dict(response_header.headers)
+def fetch_head(w):
+    try:
+        response_header = requests.request('GET', w)
+        return dict(response_header.headers)
+    except Exception as e:
+        print(f"Something went wrong {e}")
 
 def fetch_multiple_head(w):
     output_dict = {}
@@ -25,8 +35,7 @@ def fetch_multiple_head(w):
             with open(output_path, 'w') as output_file:
                 for i, line in enumerate(url_file):
                     print(i,": ", line.strip())
-                    output_dict[i]= fetch_head(line.strip())
-                    #output_file.write(f"{i}: {fetch_head(line.strip())}\n")
+                    output_dict[i]= validateinput(fetch_head(line.strip()))
                     output_file.write(f"{line} : {json.dumps(output_dict[i], indent=2)}\n")
         return output_dict
     except Exception as e:
