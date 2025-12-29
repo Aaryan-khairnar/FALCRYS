@@ -1,5 +1,5 @@
 # FALCRYS
-OSINT Reconnaissance Tool: Developed a Python-based tool to collect, analyze, and visualize OSINT data. 
+OSINT Reconnaissance Framework: Python-based tools to collect, analyze, and visualize OSINT data. 
 
 ## 1. Header-Fetch (Implemented)
 
@@ -88,8 +88,54 @@ These features are planned as future enhancements.
 * Structured JSON/CSV output
 * Modular integration with other FALCRYS recon components
 
-## 2. Log-Parser
+---
 
-## 3. Nmap-Automator
+## Log-Analyser (Planned)
 
-## 4. Subdomain-Finder
+The **Log-Analyser** module is intended to process and extract useful security-relevant information from application and server logs.
+
+The goal of this module is to help identify suspicious patterns, errors, and anomalies that may indicate misconfigurations, attacks, or operational issues.
+
+Planned capabilities include:
+
+* Parsing structured and semi-structured log files
+* Identifying failed authentication attempts, unusual request patterns, and error spikes
+* Filtering and searching logs based on keywords, IP addresses, timestamps, or status codes
+* Producing summarized output to support incident analysis and triage
+
+This module is currently in the design phase and will be implemented as part of the broader FALCRYS reconnaissance and analysis workflow.
+
+---
+
+## Nmap-Automator (Planned)
+
+The **Nmap-Automator** module is designed to automate and standardize common Nmap scanning workflows used during reconnaissance and enumeration.
+
+Instead of manually running multiple Nmap commands, this module aims to orchestrate scans based on target context and collect results in a structured format.
+
+Planned capabilities include:
+
+* Running predefined Nmap scan profiles (basic, service detection, version detection)
+* Automating scan selection based on open ports or target type
+* Parsing Nmap output for open ports, services, and versions
+* Saving scan results in machine-readable formats (JSON/XML)
+
+This module is intended to reduce repetitive manual effort while maintaining control over scan scope and intensity.
+
+---
+
+## Subdomain-Finder (Planned)
+
+The **Subdomain-Finder** module focuses on discovering subdomains associated with a given target domain as part of passive and active reconnaissance.
+
+This module is designed to expand the attack surface map by identifying additional hosts that may expose services, applications, or misconfigurations.
+
+Planned capabilities include:
+
+* Passive subdomain enumeration using public data sources
+* Optional active techniques such as DNS brute-forcing
+* Deduplication and validation of discovered subdomains
+* Output in structured formats for integration with other FALCRYS modules
+
+The module will be implemented with an emphasis on accuracy, rate-limiting, and responsible reconnaissance practices.
+
